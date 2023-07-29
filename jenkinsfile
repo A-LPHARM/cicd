@@ -15,7 +15,7 @@ pipeline {
 
 		stage("docker build") {
 			steps{
-				sh "Docker build -t henriksin1/timeserver ."
+				sh "docker build -t henriksin1/timeserver ."
 			}
 		}
 
@@ -29,7 +29,8 @@ pipeline {
 
 		stage("Push to Registry") {
 			steps{
-				sh "echo pushing..."
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+				echo "Login complete..."
 			}
 		}
 
