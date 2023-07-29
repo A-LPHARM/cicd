@@ -11,7 +11,7 @@ pipeline {
 
 		stage("docker build") {
 			steps{
-				sh "Docker build -t henriksin1/timeserver ."
+				sh "docker build -t henriksin1/timeserver ."
 			}
 		}
 
