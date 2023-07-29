@@ -29,14 +29,15 @@ pipeline {
 
 		stage("Push to Registry") {
 			steps{
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-				echo "Login complete..."
+				sh 'docker tag henriksin1/timeserver docker.io/henriksin1/henryserver:$BUILD_ID'
+				sh 'docker push docker.io/henriksin1/henryserver:$BUILD_ID'
 			}
 		}
 
 		stage("Cleanup") {
 			steps{
-				sh "echo cleanup..."
+				sh 'docker rmi -f $(docker image ls -aq)'
+				sh 'docker logout'
 			}
 		}
 
