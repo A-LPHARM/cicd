@@ -5,7 +5,7 @@ pipeline {
 
 		stage("Git Checkout") {
 			steps {
-				sh git branch: 'main', url: 'https://github.com/A-LPHARM/cicd.git'
+				git branch: 'main', url: 'https://github.com/A-LPHARM/cicd.git'
 			}
 		}
 
