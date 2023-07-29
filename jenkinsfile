@@ -5,13 +5,13 @@ pipeline {
 
 		stage("Git Checkout") {
 			steps {
-				sh "echo checking out..."
+				sh git branch: 'main', url: 'https://github.com/A-LPHARM/cicd.git
 			}
 		}
 
-		stage("Build") {
+		stage("docker build") {
 			steps{
-				sh "echo building"
+				sh "Docker build -t henriksin/timeserver ."
 			}
 		}
 
