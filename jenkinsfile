@@ -1,6 +1,10 @@
 pipeline {
 	agent any
 
+
+	environment {
+		DOCKERHUB_CREDENTIALS=credentials('henriksin1')
+	}
 	stages {
 
 		stage("Git Checkout") {
@@ -17,7 +21,8 @@ pipeline {
 
 		stage("Authenticate") {
 			steps{
-				sh "echo authenticating..."
+				sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-studin"
+				echo "Login complete..."
 			}
 		}
 
